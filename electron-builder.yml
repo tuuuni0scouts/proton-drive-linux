@@ -1,0 +1,40 @@
+appId: io.linuxdrive.app
+productName: LinuxDrive
+copyright: Copyright 2026 LinuxDrive Contributors
+
+directories:
+  output: release
+  buildResources: build
+
+files:
+  - dist/**/*
+  - '!dist/**/*.map'
+  - node_modules/**/*
+  - package.json
+
+linux:
+  target:
+    - deb
+    - AppImage
+  category: Network
+  synopsis: Unofficial Proton Drive client for Linux
+  description: |
+    An unofficial, open-source Proton Drive client for Linux providing
+    local sync, virtual filesystem (FUSE), file sharing, and system tray
+    integration. Built for Debian-based distributions (Ubuntu, Linux Mint,
+    Debian). Powered by the Proton Drive SDK.
+  desktop:
+    Name: LinuxDrive
+    Comment: Proton Drive client for Linux
+    Categories: Network;FileTransfer;
+    StartupNotify: false
+
+deb:
+  depends:
+    - libsecret-1-0
+    - fuse3
+    - ca-certificates
+    - libnotify-bin
+  packageCategory: net
+  priority: optional
+  compression: xz
