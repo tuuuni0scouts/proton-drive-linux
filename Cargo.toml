@@ -1,0 +1,23 @@
+[workspace]
+members = ["daemon", "sdk-bindings"]
+resolver = "2"
+
+[workspace.package]
+version   = "0.1.0"
+edition   = "2021"
+authors   = ["Proton Drive Linux Contributors"]
+license   = "GPL-3.0-only"
+
+# Workspace-level dependency versions — pin here, reference with .workspace = true
+[workspace.dependencies]
+tokio          = { version = "1",    features = ["full"] }
+thiserror      = "2"
+anyhow         = "1"
+serde          = { version = "1",    features = ["derive"] }
+serde_json     = "1"
+chrono         = { version = "0.4",  features = ["serde"] }
+uuid           = { version = "1",    features = ["v4", "serde"] }
+tracing        = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+async-trait    = "0.1"
+futures        = "0.3"

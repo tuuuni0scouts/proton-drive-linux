@@ -1,0 +1,72 @@
+[package]
+name    = "proton-drive-daemon"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "proton-drive-daemon"
+path = "src/main.rs"
+
+[dependencies]
+# --- Async runtime ---
+tokio          = { workspace = true }
+tokio-util     = { version = "0.7", features = ["codec", "io"] }
+tokio-stream   = "0.1"
+
+# --- FUSE3 ---
+fuser          = "0.14"
+libc           = "0.2"
+
+# --- D-Bus IPC ---
+zbus           = { version = "4",  features = ["tokio"] }
+
+# --- Protobuf (C# SDK wire protocol) ---
+prost          = "0.13"
+prost-types    = "0.13"
+
+# --- Dynamic library loading (C# NativeAOT .so) ---
+libloading     = "0.8"
+
+# --- Serialization ---
+serde          = { workspace = true }
+serde_json     = { workspace = true }
+toml           = "0.8"
+
+# --- Local state (sync queue, metadata cache) ---
+rusqlite       = { version = "0.31", features = ["bundled"] }
+
+# --- Logging ---
+tracing                = { workspace = true }
+tracing-subscriber     = { workspace = true }
+tracing-appender       = "0.2"
+
+# --- Error handling ---
+thiserror      = { workspace = true }
+anyhow         = { workspace = true }
+
+# --- Async trait support ---
+async-trait    = { workspace = true }
+
+# --- Retry / backoff / circuit-breaker ---
+backoff        = { version = "0.4", features = ["tokio"] }
+
+# --- Utilities ---
+dirs           = "5"
+chrono         = { workspace = true }
+uuid           = { workspace = true }
+blake3         = "1"
+futures        = { workspace = true }
+parking_lot    = "0.12"
+pin-project    = "1"
+bytes          = "1"
+
+[build-dependencies]
+# Generates Rust FFI bindings from the C header exported by the C# SDK .so
+bindgen        = "0.70"
+# Generates Rust structs from .proto files used by the C# SDK wire protocol
+prost-build    = "0.13"
+
+[dev-dependencies]
+mockall        = "0.13"
+tempfile       = "3"
+tokio-test     = "0.4"
